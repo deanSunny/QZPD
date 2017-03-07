@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>注册</title>
+<link href="./css/style_log.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="./css/style.css">
+<link rel="stylesheet" type="text/css" href="./css/userpanel.css">
+<link rel="stylesheet" type="text/css" href="./css/jquery.ui.all.css">
+<link rel="stylesheet" type="text/css" href="css/reg.css">
+</head>
+
+<body class="reg" mycollectionplug="bind">
+<div class="container">
+<div class="reg_bg">
+<div class="reg_boder">
+<div class="reg_padding">
+<form action="sub_reg.php" method="post" name="register">
+<h2>用户名/警号</h2>
+  <label>
+    <input type="text" name="username" id="username" class="txt_input txt_input2" /><label class="l_red">*</label>
+  </label>
+  <h2>密码</h2>
+  <label>
+    <input type="password" name="userpwd" id="userpwd" class="txt_input"  /><label class="l_red">*</label>
+  </label>
+  <h2>确认密码</h2>
+  <label>
+    <input type="password" name="userpwd2" id="confpwd" class="txt_input"  /><label class="l_red">*</label>
+  </label>
+  <h2>备注</h2>
+  <label>
+  	<input type="text" name="remark" id="remark" class="txt_input" /><label class="l_red"></label>
+  </label>
+  <div class="rem_sub reg_sub">
+      <label>
+          <input name="btn_reg" type="submit" class="sub_button" id="button" style="opacity: 0.7;" value="注册">
+      </label>
+  </div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+@charset "UTF-8";
+/* CSS Document */
+.reg{
+	background:url(../img/login_bgx.gif);
+	text-align:center;
+}
+.container{
+	width: 960px;
+	height: auto;
+	text-align: center;
+	margin:0 auto;
+}
+.reg_bg{
+	width: 430px;
+	text-align: center;
+	margin:0 auto;
+}
+.reg_boder{ 
+	background:url(../img/login_m_bg.png) no-repeat;
+	background-size:430px 450px;
+	width:430px;
+	height:450px; 
+	overflow:hidden;
+	margin:100px auto;
+}
+.reg_padding{ padding:28px 47px 20px 30px ;}
+.reg_boder h2{ color:#4f5d80; text-transform:uppercase; font-size:12px; font-weight:normal; margin-bottom:11px;}
+.reg_boder input.txt_input{ width:295px; height:36px; border:1px solid #cad2db; background:url(../img/txt_input_bg.gif) no-repeat;  padding:0 5px; -moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; line-height:36px; margin-bottom:10px; font-size:14px; color:#717171; font-family:Arial;}
+.reg_boder input.txt_input:focus{ transition:border linear .2s,box-shadow linear .2s; -moz-transition:border linear .2s,-moz-box-shadow linear .2s; -webkit-transition:border linear .2s,-webkit-box-shadow linear .2s; outline:none;border-color:rgba(173,173,173.75); box-shadow:0 0 8px rgba(173,173,173,.5); -moz-box-shadow:0 0 8px rgba(173,173,173,.5); -webkit-box-shadow:0 0 8px rgba(173,173,173,3); border:1px solid #6192c8;}
+.reg_boder .reg_sub{
+	text-align:center;
+	width:403px;
+	
+}
+.reg_boder .l_red{
+	color:#D82225;
+	margin-left:10px;}
+.reg_boder input.txt_input2, .reg_boder input.txt_input3, .reg_boder input.txt_input4{ margin-bottom:20px;}

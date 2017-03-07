@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Layui</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="plugins/layui/css/layui.css" media="all" />
+		<link rel="stylesheet" href="css/global.css" media="all">
+        <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+	</head>
+
+	<body>
+		<div style="margin: 15px;">
+			<fieldset class="layui-elem-field">
+				<legend>认证比对</legend>
+				<div class="layui-field-box">
+                        	<!--<input id="upLoadBtn" class="layui-btn layui-btn-normal" type="button" value="上传图片">-->
+							<form class="layui-form" method="post" enctype="multipart/form-data" action="">
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">待测图片</label>
+                            <div class="layui-input-block">
+                            	<input class="layui-upload-file" id="f2_im_1" name="f2_im_1" type="file" lay-title="上传图片">
+                                <input id="upImName_1" type="text" name="upImName_1" class="layui-input" style="display:none;">
+                            </div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">对比图片</label>
+                            <div class="layui-input-block">
+                            	<input class="layui-upload-file" id="f2_im_2" name="f2_im_2" type="file" lay-title="上传图片">
+                                <input id="upImName_2" type="text" name="upImName_2" class="layui-input" style="display:none;">
+                            </div>
+                            </div>
+                            <div class="layui-form-item">
+                            <div class="layui-input-block">
+                              <button id="start" class="layui-btn" lay-submit lay-filter="f2">开始认证</button>
+                              <button id="reset" type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            </div>
+                            </div>
+                            </form>
+                        </div>
+                    <fieldset class="layui-elem-field layui-field-title">
+						<legend>待检测人脸图像</legend>
+                        <div class="layui-field-box">
+                        	<img id="input_im_1" />
+                            <img id="input_im_2" />
+						</div>
+					</fieldset>
+					<fieldset class="layui-elem-field layui-field-title">
+						<legend>比对结果</legend>
+						<div class="layui-field-box">
+							<blockquote class="layui-elem-quote">两张图片认证相似度：<label id="f2_result"></label></blockquote>
+						</div>
+					</fieldset>
+			</fieldset>
+            
+			<!--<iframe id="hidden_submit" name="hidden_subm	it" style="display:none;" onload="iframeLoad(this);"></iframe>-->
+		</div>
+		<script type="text/javascript" src="plugins/layui/layui.js"></script>
+        <script type="text/javascript">
+			layui.use(['upload', 'layer', 'form'], function(){
+				var form = layui.form(),
+					layer = layui.layer;
+				form.on('submit(f2)', function(data) {
+					$.post('sub_f2.php', data.field, function(res){
+					//layer.alert(res);
+						console.log(res);
+						$("#f2_result").html(res);
+						layer.msg('提交成功，正在查询中');
+						$("#start").addClass('layui-btn-disabled');
+					});
+					//console.log(data.field);
+					return false;
+				});	
+				layui.upload({
+					url: "f2_uplim.php?im_id=1"
+					, elem: '#f2_im_1'
+					, ext: 'jpg|png|gif|jpeg'
+					, type: 'images'
+					, before: function(input){
+						layer.msg('图片上传处理中，请稍后...');
+						$("#start").removeClass('layui-btn-disabled');
+					}
+					
+					,success: function(res, input){
+    					console.log(res);
+						$('#input_im_1').attr("src", res.url);
+						$('#input_im_1').css("height", "300px");
+						$('#upImName_1').attr("value", res.url);
+						//console.log(input);
+  					}
+				});
+				layui.upload({
+					url: "f2_uplim.php?im_id=2"
+					, elem: '#f2_im_2'
+					, ext: 'jpg|png|gif|jpeg'
+					, type: 'images'
+					, before: function(input){
+						layer.msg('图片上传处理中，请稍后...');
+						$("#start").removeClass('layui-btn-disabled');
+					}
+					
+					,success: function(res, input){
+    					console.log(res);
+						$('#input_im_2').attr("src", res.url);
+						$('#input_im_2').css("height", "300px");
+						$('#upImName_2').attr("value", res.url);
+						//console.log(input);
+  					}
+				});
+				
+			});
+			$("#reset").click(function(){
+		   		$("#input_im_1").removeAttr("src");
+				$('#input_im_1').css("height", "0px");
+				$("#input_im_2").removeAttr("src");
+				$('#input_im_2').css("height", "0px");
+				$("#start").removeClass('layui-btn-disabled');
+				$("#f2_result").html('');
+		    });
+				
+        </script>
+	</body>
+
+</html>
